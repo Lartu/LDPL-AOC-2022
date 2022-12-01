@@ -10,3 +10,6 @@ make sure it's a viable release candidate.
 
 Don't expect me to complete every one of these puzzles. 
 I know I will not follow through with this, I never do.
+
+## Licence
+Every single line of code in this repo is yours if you want it. Merry christmas!
