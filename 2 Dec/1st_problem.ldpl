@@ -1,0 +1,30 @@
+INCLUDE "../aoc_lib.ldpl"
+INCLUDE "aux.ldpl"
+
+DATA:
+FILE_CONTENTS               IS TEXT
+PLAYS                       IS TEXT LIST
+LINE                        IS TEXT
+MOVEMENTS                   IS TEXT LIST
+PLAY_SCORE                  IS NUMBER
+TOTAL_SCORE                 IS NUMBER
+MY_PLAY                     IS TEXT
+OP_PLAY                     IS TEXT
+
+
+PROCEDURE:
+# Load strategy guide
+LOAD FILE "input.txt" IN FILE_CONTENTS
+#LOAD FILE "example_input.txt" IN FILE_CONTENTS
+SPLIT FILE_CONTENTS BY "\n" IN PLAYS
+
+# Calculate total score
+FOR EACH LINE IN PLAYS DO
+    SPLIT LINE BY " " IN MOVEMENTS
+    GET NAME OF PLAY MOVEMENTS:0 IN OP_PLAY
+    GET NAME OF PLAY MOVEMENTS:1 IN MY_PLAY
+    GET SCORE FOR MY_PLAY AGAINST OP_PLAY IN PLAY_SCORE
+    ADD TOTAL_SCORE AND PLAY_SCORE IN TOTAL_SCORE
+REPEAT
+
+DISPLAY "The total score is: " TOTAL_SCORE CRLF
