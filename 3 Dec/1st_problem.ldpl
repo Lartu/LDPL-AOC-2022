@@ -1,0 +1,28 @@
+INCLUDE "../aoc_lib.ldpl"
+INCLUDE "aux.ldpl"
+
+DATA:
+FILE_CONTENTS               IS TEXT
+RUCKSACKS                   IS TEXT LIST
+RUCKSACK                    IS TEXT
+SHARED_ELEMENT              IS TEXT
+ELEMENT_PRIORITY            IS NUMBER
+TOTAL_PRIORITY              IS NUMBER
+
+PROCEDURE:
+# Load strategy guide
+LOAD FILE "input.txt" IN FILE_CONTENTS
+#LOAD FILE "example_input.txt" IN FILE_CONTENTS
+SPLIT FILE_CONTENTS BY "\n" IN RUCKSACKS
+
+# Iterate over each rucksack
+FOR EACH RUCKSACK IN RUCKSACKS DO
+    # Find the shared element
+    GET SHARED ELEMENT FROM RUCKSACK IN SHARED_ELEMENT
+    # Get the priority for the shared element
+    GET PRIORITY OF SHARED_ELEMENT IN ELEMENT_PRIORITY
+    DISPLAY SHARED_ELEMENT "(" ELEMENT_PRIORITY ")" CRLF
+    ADD ELEMENT_PRIORITY AND TOTAL_PRIORITY IN TOTAL_PRIORITY
+REPEAT
+
+DISPLAY "The sum of the priorities of the shared items is: " TOTAL_PRIORITY CRLF
